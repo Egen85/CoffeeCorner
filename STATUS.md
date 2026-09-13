@@ -15,6 +15,7 @@ fork parent.
 - Stack: Express single-file backend (`frontend/server.js`), vanilla JS SPA (`frontend/public/`), PostgreSQL.
 - Inherited schema (accounts/people/sites/vendors/systems/components/interactions/credentials + junctions) is the **starting point**, to be reshaped for community organizing.
 - DB: local Postgres, database `home_integration` (name is legacy; rename is backlog). **Intentionally empty** — the old client data is not wanted; new member data will come in separately and must never be committed.
+- `community-model.md` — the proposed community schema (pending user approval; see CURRENT STEP).
 
 ## Current state (2026-09-13)
 
@@ -28,16 +29,19 @@ fork parent.
 
 ## CURRENT STEP
 
-1. **Define the community-organizing domain model.** Decide what a "member", an "event", a "cause/initiative", a "group", and a "contact/interaction" look like for the user's actual community work (who are we organizing? what do we track: attendance, shifts, petitions, meetings?). Output: a sketch of the new entity model to review with the user **before** writing migrations. The inherited accounts/people/etc. tables get mapped onto or replaced by this.
+1. **Review `community-model.md`** with the user — the proposed 7-table community schema (people / sites / site_person / gatherings / gathering_person / topics / users) replacing the inherited CRM schema. Get answers to its four open questions (UI terms, site addresses, one-vs-many sites, topic status granularity). **Do not write migration 010 until the user approves the model.**
+2. After approval: execute the plan's build steps (migration → schema.md rewrite → frontend repoint → ARCHITECTURE.md).
 
 ## Backlog
 
 - Rename the `home_integration` database to something on-theme
-- Write the real `ARCHITECTURE.md` (currently a skeleton)
-- Decide the UI theme (the inherited design system is the ClowdForce look)
+- Notification delivery channel (SMS/email) behind `site_person.notify`
 - Re-enable auth (`DEV_NO_AUTH = false` + users table seeding) once the app is in shape
-- New PII data import path (when the user has the data: CSV under gitignored `data/` → import script/API → DB)
+- New PII data import path (when the user has the data: CSV under gitignored `data/` → import path → DB)
+- Map view (lat/lon in `sites.extra`)
+- Groups/sub-communities — only once they've actually emerged as topics
 
 ## History
 
-- 2026-09-13: Forked from ClowdForce, re-oriented as Coffee Corner, deployed locally. (ClowdForce history before the fork lives in that repo / its dev machine.)
+- 2026-09-13 (2): User explained the actual community (public-space neighbor gatherings; principles: connected = safer, intentional/kind/open, let things emerge). Wrote `community-model.md` (proposed schema, pending approval).
+- 2026-09-13: Forked from ClowdForce, re-oriented as Coffee Corner, deployed locally.
