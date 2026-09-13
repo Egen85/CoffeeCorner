@@ -1,0 +1,19 @@
+**/.DS_Store
+**/__pycache__/
+**/node_modules/
+
+# Secret — the credential encryption key is load-bearing; never commit it.
+frontend/.encryption-key
+
+# Real data (PII) — never goes to GitHub. The live data lives in the local
+# Postgres database, which is not part of this repo at all; anything dropped
+# on disk for import/export belongs under data/ and stays out of git.
+data/
+manifests/
+*.csv
+*.xlsx
+
+# Local notes / session config
+account_progress.md
+frontend/server.log
+.claude/

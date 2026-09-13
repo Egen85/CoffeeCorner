@@ -1,0 +1,17 @@
+{
+  "name": "coffee-corner",
+  "version": "1.0.0",
+  "description": "Coffee Corner — community organizing tool",
+  "main": "server.js",
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "express": "^4.21.0",
+    "pg": "^8.13.0",
+    "body-parser": "^1.20.3"
+  }
+}

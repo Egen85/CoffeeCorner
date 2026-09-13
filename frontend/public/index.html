@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Corner</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="login-screen" class="screen">
+        <div class="login-box">
+            <span class="eyebrow">Community</span>
+            <h1>Coffee Corner</h1>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required autocomplete="current-password">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center">Log In</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Setup Admin Screen (shown if no users exist) -->
+    <div id="setup-screen" class="screen" style="display:none;">
+        <div class="login-box">
+            <span class="eyebrow">First-time setup</span>
+            <h1>Create Admin</h1>
+            <p class="subtitle">This is your first time — create an admin account to get started.</p>
+            <form id="setup-form">
+                <div class="form-group">
+                    <label for="setup-username">Username</label>
+                    <input type="text" id="setup-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="setup-name">Display Name</label>
+                    <input type="text" id="setup-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="setup-password">Password</label>
+                    <input type="password" id="setup-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="setup-confirm">Confirm Password</label>
+                    <input type="password" id="setup-confirm" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center">Create Admin</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="app" style="display:none">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <span class="wordmark">Coffee Corner</span>
+            </div>
+            <ul class="nav-links">
+                <li class="nav-item" data-route="dashboard">Dashboard</li>
+                <li class="nav-item" data-route="accounts">Accounts</li>
+                <li class="nav-item" data-route="people">People</li>
+                <li class="nav-item" data-route="sites">Sites</li>
+                <li class="nav-item" data-route="vendors">Vendors</li>
+            </ul>
+            <div class="sidebar-footer">
+                <div id="user-display"></div>
+                <!-- Hidden while auth is disabled (DEV_NO_AUTH in server.js); remove style="display:none" when re-enabling -->
+                <button class="btn btn-sm btn-logout" id="logout-btn" style="display:none">Log Out</button>
+            </div>
+        </nav>
+        <div class="main-col">
+            <header class="topbar">
+                <div class="global-search">
+                    <span class="search-icon">⌕</span>
+                    <input type="text" id="global-search-input" placeholder="Search people, accounts, sites, vendors…" autocomplete="off">
+                    <div class="search-results" id="global-search-results"></div>
+                </div>
+            </header>
+            <main class="view" id="view-root"></main>
+        </div>
+    </div>
+
+    <!-- Add/Edit Modal -->
+    <div id="modal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="modal-title">Add</h2>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                <button class="btn btn-primary" id="modal-save" onclick="saveModal()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>
