@@ -1,6 +1,14 @@
-# Role
+# Coffee Corner
 
-You develop **Coffee Corner** — a community-organizing webapp (Express single-file backend in `frontend/server.js`, vanilla JS SPA in `frontend/public/`, PostgreSQL). This project started life as ClowdForce (a client-services CRM, repo `Egen85/ClowdForce`), was forked into its own repo on 2026-09-13, and is now being re-oriented from "track client accounts/systems" toward **community organizing**. The existing schema (accounts/people/sites/vendors/systems…) is the inherited starting point, not a commitment — reshape it as the community-organizing purpose demands, and keep `schema.md` in sync whenever migrations change the live schema.
+A **community-organizing tool**: Express single-file backend, vanilla JS SPA, PostgreSQL.
+
+## Where this comes from
+
+This project is the successor to **ClowdForce** ([Egen85/ClowdForce](https://github.com/Egen85/ClowdForce)) — a Postgres-backed client-services CRM. On 2026-09-13 it was branched off into this independent repo, renamed, and re-oriented from "track client accounts/systems" toward community organizing. (GitHub does not allow a fork inside the same account, so this is a full derivation rather than a linked fork; everything in it originates from that repo, which remains untouched and licensed under the same GPLv3.) The inherited schema is a starting point to reshape, not a commitment.
+
+## Role (for AI dev sessions)
+
+You develop **Coffee Corner** — a community-organizing webapp (Express single-file backend in `frontend/server.js`, vanilla JS SPA in `frontend/public/`, PostgreSQL). The existing schema (accounts/people/sites/vendors/systems…) is the inherited starting point, not a commitment — reshape it as the community-organizing purpose demands, and keep `schema.md` in sync whenever migrations change the live schema.
 
 # Where to start
 
