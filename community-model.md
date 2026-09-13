@@ -38,6 +38,10 @@ categories — a person's engagement is shown by what they actually do
 3. Afterward the host writes a short **debrief** — loose notes of the
    conversations, especially affirmative statements about the kind of
    community people want.
+4. Attendees can, in their own words, share their **thoughts** on the
+   experience (what they liked, an idea that stuck, who they connected with)
+   — and opt in to those being shown publicly as a little breakdown of how the
+   gathering was for everyone.
 
 So this is as much **event-planning software** as it is a people database.
 (Schema note: the QR intake and notification *delivery* are features that
@@ -116,13 +120,19 @@ gathering they happened in. If some of them later harden into real ongoing
 efforts, promote those to a table then — don't pre-structure.)*
 
 ### gathering_person
-Who was there.
+Who was there — and, afterward, how it was for them.
 
 | column | type | notes |
 |---|---|---|
 | gathering_id | FK gatherings PK-part | |
 | person_id | FK people PK-part | |
 | role | text default 'attendee' | `host` / `attendee` / `mentioned` |
+| thoughts | text | nullable — the person's own post-gathering note: what they liked or didn't, an idea that made them think, who they enjoyed talking to |
+| thoughts_public | bool default false | opt-in: include in the gathering's public "breakdown of everyone's experience" (only shows when `thoughts` is non-null) |
+
+*(Future, explicitly deferred: AI summarizing public thoughts into the host's
+`conversations` debrief. For now everything is written manually by the people
+themselves — that's the point.)*
 
 ### users
 App logins for when auth is re-enabled. Kept as-is from the inherited schema.
@@ -150,6 +160,13 @@ App logins for when auth is re-enabled. Kept as-is from the inherited schema.
 - **QR intake** — public, unauthenticated landing page per site (QR encodes the
   site) → person + site_person(notify). Requires a public HTTPS URL + care
   around the PII in intake.
+- **Thoughts follow-up** — a post-gathering page/link (QR or in the app) where
+  attendees write their `thoughts` and choose `thoughts_public`; the
+  gathering page then shows the public breakdown (in the app — thoughts are
+  personal, so the breakdown never appears on the anonymous QR page).
+  Needs the public URL above.
+- **AI summarization** — fold public `thoughts` into the host's
+  `conversations` debrief. Explicitly deferred; manual for now.
 - **Notification delivery** — email/SMS to `site_person.notify = true` when a
   gathering is scheduled (needs a provider).
 - **Map** — lat/lon are ready; a map view when wanted.

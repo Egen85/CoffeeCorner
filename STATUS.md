@@ -43,6 +43,7 @@ fork parent.
 
 ## History
 
+- 2026-09-13 (4): `gathering_person` gains `thoughts` (person's own post-gathering note) + `thoughts_public` (opt-in public breakdown); product loop step 4; AI-summarizing-into-conversations noted as explicitly deferred. Still: build migration 010.
 - 2026-09-13 (3): User approved the model with revisions → **v2**: no topics table (conversations = jsonb debrief on gatherings), no host/member roles (engagement is behavior), sites by lat/lon not address, many sites anywhere, QR opt-in / host-anywhere / notify loop documented as the product loop. Ready to build.
 - 2026-09-13 (2): User explained the actual community (public-space neighbor gatherings; principles: connected = safer, intentional/kind/open, keep what people dream). Wrote `community-model.md` v1 for review.
 - 2026-09-13: Forked from ClowdForce, re-oriented as Coffee Corner, deployed locally.
